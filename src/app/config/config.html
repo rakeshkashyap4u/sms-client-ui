@@ -1,0 +1,49 @@
+<div id="service-dashboard">
+    <p class="header"><b>SMSC Configuration</b></p>
+    <hr />
+
+    <!-- Add Button -->
+    <p class="button" (click)="addNewConfiguration()">
+      <mat-icon class="plus-icon">add_circle</mat-icon>
+      <a>Add New Configuration</a>
+    </p>
+
+    <!-- Show message if empty -->
+    <div *ngIf="configurations.length === 0">
+      <p>
+        No Configuration added yet.
+        <a (click)="addNewConfiguration()">Click here to add a new Configuration.</a>
+      </p>
+    </div>
+
+    <!-- Table -->
+    <table class="service-list-table" *ngIf="configurations.length > 0">
+      <tr>
+        <th>Circle</th>
+        <th>Server IP</th>
+        <th>Server Port</th>
+        <th>Service URI</th>
+        <th>User ID</th>
+        <th>Password</th>
+        <th>Bind Mode</th>
+        <th>Operator</th>
+        <th>Country</th>
+        <th>Protocol</th>
+      </tr>
+
+      <tr *ngFor="let config of configurations">
+        <td>{{ config.circle }}</td>
+        <td>{{ config.serverIp }}</td>
+        <td>{{ config.serverPort }}</td>
+        <td>{{ config.serviceUri }}</td>
+        <td>{{ config.userid }}</td>
+        <td>{{ config.password }}</td>
+        <td>{{ config.bindMode }}</td>
+
+        <!-- Match with detaillist -->
+        <td>{{ getDetailByOpId(config.opId)?.operator }}</td>
+        <td>{{ getDetailByOpId(config.opId)?.country }}</td>
+        <td>{{ getDetailByOpId(config.opId)?.protocol }}</td>
+      </tr>
+    </table>
+  </div>

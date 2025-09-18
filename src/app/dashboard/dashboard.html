@@ -1,0 +1,15 @@
+<div class="menu-grid" style="padding:50px;">
+    <a *ngFor="let item of menuItems" [routerLink]="item.route" [title]="item.title" class="menu-card">
+      <div class="icon">{{ item.icon }}</div>
+      <div class="label">{{ item.label }}</div>
+    </a>
+  </div>
+
+  <div class="log-section">
+    <h2>Change Log Level</h2>
+    <div class="log-grid">
+      <a *ngFor="let log of logLevels" [routerLink]="'/changeLogLevel/' + log.value" class="log-card">
+        {{ log.label }}
+      </a>
+    </div>
+  </div>

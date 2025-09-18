@@ -1,0 +1,38 @@
+<div id="service-dashboard">
+    <p class="header"><b>LANGUAGES</b></p>
+    <hr>
+
+    <p class="add-button" >
+      <img class="plus-icon" (click)="addNewLanguage()" style="width:40px;height:40px;" src="https://static.vecteezy.com/system/resources/thumbnails/017/350/124/small_2x/plus-icon-design-png.png" alt="Add"/>
+      <a (click)="addNewLanguage()">Add New Language</a>
+    </p>
+
+    <!-- If no languages -->
+    <p *ngIf="languageList.length === 0">
+      No languages added yet.
+      <a (click)="addNewLanguage()">Click here to add a new language.</a>
+    </p>
+
+    <!-- If languages exist -->
+    <table class="service-list-table" *ngIf="languageList.length > 0">
+      <tr>
+        <th>Language Name</th>
+        <th>Data Coding</th>
+        <th>Service Type</th>
+        <th>Encoding</th>
+        <th>Script</th>
+      </tr>
+
+      <tr class="tbl-row" *ngFor="let language of languageList">
+        <td>
+          <a (click)="goToLanguageInfo(language.language)">
+            {{ getLanguageName(language.language) }}
+          </a>
+        </td>
+        <td>{{ language.dataCoding }}</td>
+        <td>{{ language.serviceType }}</td>
+        <td>{{ language.encoding }}</td>
+        <td>{{ language.script }}</td>
+      </tr>
+    </table>
+  </div>

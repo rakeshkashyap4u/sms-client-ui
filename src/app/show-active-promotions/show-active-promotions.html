@@ -1,0 +1,40 @@
+<div id="pageHeader">
+    <div id="bng_logo">
+      <p>
+        <span style="color:black;">Rakesh</span>
+        <span style="color:rgb(139, 243, 139);"> Kashyap</span>
+      </p>
+    </div>
+    <div id="headingMain">
+      <b>SMS</b> Promotions
+    </div>
+  </div>
+
+  <div id="mainContent">
+    <div id="container">
+      <h1>Active Promotions</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Promotion Name</th>
+            <th>Start Time</th>
+            <th>Push Count</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let promo of promotions">
+            <td>{{ promo.name }}</td>
+            <td>{{ promo.start }}</td>
+            <td>{{ promo.count }}</td>
+            <td class="action-links">
+              <a [href]="'/SMSClient/stopPromotion?pid=' + promo.pid">Stop</a> /
+              <a [href]="'/SMSClient/togglePromotion?pid=' + promo.pid">
+                {{ toggleAction(promo) }}
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

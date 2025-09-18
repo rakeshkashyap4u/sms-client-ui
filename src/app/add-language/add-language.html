@@ -1,0 +1,70 @@
+<div class="form-style-10">
+  <h1>
+    Add New Language
+    <span>Configure language mapping here!</span>
+  </h1>
+
+  <form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
+    <div class="section"><span>1</span>Language Info</div>
+    <div class="inner-wrap">
+      <label>
+        Language Name
+        <input type="text" formControlName="language" placeholder="Ex: _E" />
+      </label>
+      <div class="error" *ngIf="languageForm.get('language')?.touched && languageForm.get('language')?.hasError('required')">
+        Language name is required
+      </div>
+
+      <label>
+        Data Coding
+        <input type="text" formControlName="dataCoding" placeholder="Ex: 8" />
+      </label>
+      <div class="error" *ngIf="languageForm.get('dataCoding')?.hasError('pattern')">
+        Must be a single digit (0–9)
+      </div>
+    </div>
+
+    <div class="section"><span>2</span>Service Details</div>
+    <div class="inner-wrap">
+      <label>
+        Service Type
+        <select formControlName="serviceType">
+          <option value="">-- SELECT SERVICE TYPE --</option>
+          <option value="CMT">CMT</option>
+          <option value="USSD">USSD</option>
+        </select>
+      </label>
+      <div class="error" *ngIf="languageForm.get('serviceType')?.touched && languageForm.get('serviceType')?.hasError('required')">
+        Service Type is required
+      </div>
+
+      <label>
+        Encoding
+        <div class="radio-row">
+          <input type="radio" value="true" formControlName="encoding" /> True
+          <input type="radio" value="false" formControlName="encoding" /> False
+        </div>
+      </label>
+    </div>
+
+    <div class="section"><span>3</span>Script</div>
+    <div class="inner-wrap">
+      <label>
+        Script
+        <select formControlName="script">
+          <option value="">-- SELECT SCRIPT --</option>
+          <option value="0">UNKNOWN-0</option>
+          <option value="1">ARABIC-1</option>
+          <option value="2">LATIN-2</option>
+        </select>
+      </label>
+      <div class="error" *ngIf="languageForm.get('script')?.touched && languageForm.get('script')?.hasError('required')">
+        Script is required
+      </div>
+    </div>
+
+    <div class="button-section">
+      <button type="submit">Save Language</button>
+    </div>
+  </form>
+</div>

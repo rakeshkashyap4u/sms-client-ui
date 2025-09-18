@@ -1,0 +1,126 @@
+<div id="pageHeader">
+    <div id="bng_logo">
+      <p><span style="color:black;">Rakesh</span><span style="color:green;"> Kumar</span></p>
+    </div>
+    <div id="headingMain"><b>SMS</b>PROMOTIONS</div>
+  </div>
+
+  <div id="mainContent">
+    <div id="container">
+      <span class="small">
+        Please fill the following form and submit to start an SMS Promotion Campaign.
+      </span>
+
+      <form (ngSubmit)="submitForm()" #promoForm="ngForm">
+        <table class="inner-table">
+          <tr><td colspan="2" class="f-name">SMS Message</td></tr>
+          <tr>
+            <td colspan="2">
+              <textarea rows="4" name="message" [(ngModel)]="formData.message" required></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Promotion Name</td>
+            <td><input type="text" name="pname" [(ngModel)]="formData.pname" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">CLI</td>
+            <td><input type="text" name="cli" [(ngModel)]="formData.cli" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Validation</td>
+            <td>
+              <input type="radio" name="validation" value="true" [(ngModel)]="formData.validation" /> True
+              <input type="radio" name="validation" value="false" [(ngModel)]="formData.validation" /> False
+            </td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Circle</td>
+            <td>
+              <select name="circle" [(ngModel)]="formData.circle">
+                <option *ngFor="let c of circles" [value]="c.name">{{ c.name }}</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Start Date</td>
+            <td><input type="date" name="startDate" [(ngModel)]="formData.startDate" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Start Time</td>
+            <td><input type="time" name="startTime" [(ngModel)]="formData.startTime" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Expiry Date</td>
+            <td><input type="date" name="expiryDate" [(ngModel)]="formData.expiryDate" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Expiry Time</td>
+            <td><input type="time" name="expiryTime" [(ngModel)]="formData.expiryTime" required /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Service ID</td>
+            <td><input type="text" name="serviceid" [(ngModel)]="formData.serviceid" /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Language</td>
+            <td><input type="text" name="language" [(ngModel)]="formData.language" /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Flash Message</td>
+            <td><input type="checkbox" name="smsFlag" [(ngModel)]="formData.smsFlag" /></td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Protocol</td>
+            <td>
+              <input type="radio" name="protocol" value="0" [(ngModel)]="formData.protocol" /> SMPP
+              <input type="radio" name="protocol" value="3" [(ngModel)]="formData.protocol" /> HTTP
+              <input type="radio" name="protocol" value="1" [(ngModel)]="formData.protocol" /> SOAP
+            </td>
+          </tr>
+
+          <tr>
+            <td class="f-name">Base</td>
+            <td>
+              <input type="radio" name="baseType" value="upload" [(ngModel)]="formData.baseType" (change)="toggleBase('upload')" /> Upload Base
+              <input type="radio" name="baseType" value="category" [(ngModel)]="formData.baseType" (change)="toggleBase('category')" /> Enter MSISDN
+            </td>
+          </tr>
+
+          <tr *ngIf="formData.baseType === 'upload'">
+            <td>&nbsp;</td>
+            <td>
+              <span class="small">Upload base as a CSV file</span>
+              <input type="file" (change)="onFileSelected($event)" />
+            </td>
+          </tr>
+
+          <tr *ngIf="formData.baseType === 'category'">
+            <td>&nbsp;</td>
+            <td>
+              <span class="small">Enter Comma Separated MSISDNs</span><br />
+              <input type="text" name="inputMsisdn" [(ngModel)]="formData.inputMsisdn" />
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="center">
+              <button type="submit" class="submitButton">Start Promotion</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>

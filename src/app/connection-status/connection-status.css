@@ -1,0 +1,138 @@
+/* Reset & base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f7f9fc;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #333;
+  }
+
+  /* Header */
+  #pageHeader {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(90deg, #2c3e50, #4ca1af);
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  #bng_logo p {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  #bng_logo .black {
+    color: #f1f1f1;
+  }
+
+  #bng_logo .green {
+    color: #2ecc71;
+  }
+
+  #headingMain {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Container */
+  #container {
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  #container h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-decoration: none;
+  }
+
+  /* Table */
+  #cTable {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  #cTable thead {
+    background: #4ca1af;
+    color: white;
+  }
+
+  #cTable th,
+  #cTable td {
+    padding: 12px 15px;
+    text-align: center;
+  }
+
+  #cTable tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  #cTable tr:hover {
+    background: #f1f7fb;
+    transition: 0.2s;
+  }
+
+  /* Status badges */
+  .status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  .status.success {
+    background: #e8f8f0;
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+  }
+
+  .status.error {
+    background: #fdecea;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+  }
+
+  /* Action buttons */
+  .action-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 5px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.4);
+  }
+
+  .no-action {
+    color: #95a5a6;
+    font-style: italic;
+    font-size: 13px;
+  }

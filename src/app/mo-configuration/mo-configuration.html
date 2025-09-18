@@ -1,0 +1,116 @@
+<!-- Header -->
+<div id="pageHeader">
+    <div id="bng_logo">
+      <p><span class="black">Rakesh</span><span class="green"> Kashyap</span></p>
+    </div>
+    <div id="headingMain">
+      <b>SMS</b> Service
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="mainContent">
+    <div id="container" class="moContainer">
+      <h1>Mobile Originating (MO) Messages</h1>
+      <table id="moTable">
+        <thead>
+          <tr>
+            <th>MO Id</th>
+            <th>Service Code</th>
+            <th>MO Keyword</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let mo of mos"
+            (click)="selectMO(mo)"
+            [class.selected]="selectedMO?.moId === mo.moId"
+          >
+            <td>{{ mo.moId }}</td>
+            <td>{{ mo.servicecode }}</td>
+            <td>{{ mo.keyword }}</td>
+            <td>
+              <button
+                class="signal"
+                [ngStyle]="{
+                  'background-color': selectedMO?.moId === mo.moId ? 'green' : 'white'
+                }"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="newMO" class="form-card">
+        <h2>Add New MO Message</h2>
+        <form (ngSubmit)="addNewMO()" #moForm="ngForm">
+          <div class="form-group">
+            <label for="action">Action</label>
+            <textarea
+              id="action"
+              [(ngModel)]="newMO.action"
+              name="action"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="shcode">Short Code</label>
+            <input
+              id="shcode"
+              [(ngModel)]="newMO.shcode"
+              name="shcode"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="keyword">MO Keyword</label>
+            <input
+              id="keyword"
+              [(ngModel)]="newMO.keyword"
+              name="keyword"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="type">Type</label>
+            <input
+              id="type"
+              [(ngModel)]="newMO.type"
+              name="type"
+              type="text"
+              value="GET"
+              required
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submitButton">➕ Add</button>
+          </div>
+        </form>
+      </div>
+
+
+    <!-- Display Actions -->
+    <div id="display" *ngIf="selectedMO">
+      <h1>MO Actions</h1>
+      <table id="actions">
+        <tr>
+          <th>Action ID</th>
+          <th>Type</th>
+          <th>Details</th>
+        </tr>
+        <tr *ngFor="let act of selectedMO.actions">
+          <td>{{ act.aid }}</td>
+          <td>{{ act.type }}</td>
+          <td>{{ act.details | slice : 0 : 70 }}{{ act.details.length > 70 ? '...' : '' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,45 @@
+#service-dashboard {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  .add-button {
+    margin: 10px 0;
+  }
+
+  .add-button img {
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .service-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .service-list-table th, .service-list-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+  .service-list-table th {
+    background: #f4f4f4;
+    color: #333;
+  }
+
+  .tbl-row:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+  }

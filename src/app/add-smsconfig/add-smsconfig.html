@@ -1,0 +1,56 @@
+<div class="form-style-10">
+    <h1>
+      SMSC Configuration
+      <span>Configure SMS Configuration here!</span>
+    </h1>
+
+    <form [formGroup]="smscForm" (ngSubmit)="onSubmit()">
+      <div class="section"><span>2</span>SMSC IP Configuration</div>
+      <div class="inner-wrap">
+
+        <label>
+          Operator Id
+          <input type="text" formControlName="opId" />
+        </label>
+
+        <label>
+          Circle
+          <input type="text" formControlName="circle" />
+        </label>
+
+        <label>
+          Server IP
+          <input type="text" formControlName="serverIp" />
+        </label>
+
+        <label>
+          Port
+          <input type="text" formControlName="serverPort" />
+        </label>
+
+        <label>
+          Service URI
+          <input type="text" formControlName="serviceUri" />
+        </label>
+
+        <label>
+          User Id
+          <input type="text" formControlName="userid" />
+        </label>
+
+        <label>
+          Password
+          <input type="password" formControlName="password" />
+        </label>
+
+        <label>
+          Bind Mode
+          <input type="text" formControlName="bindMode" />
+        </label>
+      </div>
+
+      <div class="button-section">
+        <button type="submit" [disabled]="smscForm.invalid">Save</button>
+      </div>
+    </form>
+  </div>

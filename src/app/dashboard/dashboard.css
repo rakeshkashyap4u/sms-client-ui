@@ -1,0 +1,122 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+
+  /* Vertically center whole content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Title */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #007bff;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Menu Grid - make sure 8 cards align well */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row → 8 cards = 2 rows */
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr; /* stack vertically */
+  }
+}
+
+/* Menu Card */
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  background: linear-gradient(145deg, #f0f4ff, #e9f5ff);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: all 0.3s ease-in-out;
+  min-width: 180px;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  background: linear-gradient(145deg, #cce0ff, #99ccff);
+}
+
+/* Icon Style */
+.menu-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #007bff1a;
+  color: #007bff;
+}
+
+/* Label Style */
+.menu-card .label {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 5px;
+  color: #0056b3;
+}
+
+/* Log Section */
+.log-section h2 {
+  margin-bottom: 25px;
+  color: #17a2b8;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Log Grid */
+.log-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Log Card */
+.log-card {
+  padding: 12px 25px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #007bff, #00aaff);
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  transition: all 0.3s ease-in-out;
+}
+
+.log-card:hover {
+  background: linear-gradient(135deg, #0056b3, #0088cc);
+  transform: translateY(-4px) scale(1.05);
+}

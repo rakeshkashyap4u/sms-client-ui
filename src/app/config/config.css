@@ -1,0 +1,47 @@
+#service-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .header {
+    font-size: 22px;
+    color: #333;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .button:hover {
+    background-color: #ddd;
+  }
+
+  .plus-icon {
+    margin-right: 6px;
+    color: green;
+  }
+
+  .service-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .service-list-table th,
+  .service-list-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .service-list-table th {
+    background-color: #f5f5f5;
+  }

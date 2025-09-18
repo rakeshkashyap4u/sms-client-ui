@@ -1,0 +1,55 @@
+<!-- HEADER -->
+<div id="pageHeader">
+  <div id="bng_logo">
+    <p><span class="black">Rakesh</span><span class="green">Kashyap</span></p>
+  </div>
+  <div id="headingMain">
+    <b>SMS</b> Client
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+  <div id="container">
+    <h1>SMSC Connections</h1>
+    <table id="cTable">
+      <thead>
+        <tr>
+          <th>Circle</th>
+          <th>Details</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let circle of circles">
+          <td>{{ circle.name }}</td>
+          <td>{{ circle.detail }}</td>
+          <td>
+            <span
+              class="status"
+              [ngClass]="{
+                success: circle.status === 'Success',
+                error: circle.status !== 'Success'
+              }"
+            >
+              {{ circle.status }}
+            </span>
+          </td>
+          <td>
+            <ng-container *ngIf="circle.status === 'Success'; else connectBtn">
+              <span class="no-action">Connected</span>
+            </ng-container>
+            <ng-template #connectBtn>
+              <a
+                class="action-btn"
+                [href]="'/SMSClient/connect?circle=' + circle.name"
+                >Connect</a
+              >
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
