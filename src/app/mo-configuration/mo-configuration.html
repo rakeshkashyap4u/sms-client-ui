@@ -12,6 +12,7 @@
   <div id="mainContent">
     <div id="container" class="moContainer">
       <h1>Mobile Originating (MO) Messages</h1>
+
       <table id="moTable">
         <thead>
           <tr>
@@ -22,23 +23,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="let mo of mos"
-            (click)="selectMO(mo)"
-            [class.selected]="selectedMO?.moId === mo.moId"
-          >
-            <td>{{ mo.moId }}</td>
-            <td>{{ mo.servicecode }}</td>
-            <td>{{ mo.keyword }}</td>
-            <td>
-              <button
-                class="signal"
-                [ngStyle]="{
-                  'background-color': selectedMO?.moId === mo.moId ? 'green' : 'white'
-                }"
-              ></button>
-            </td>
-          </tr>
+          <tr *ngFor="let mo of mos$ | async"
+          (click)="selectMO(mo)"
+          [class.selected]="selectedMO?.moId === mo.moId">
+        <td>{{ mo.moId }}</td>
+        <td>{{ mo.servicecode }}</td>
+        <td>{{ mo.keyword }}</td>
+        <td>
+          <button class="signal"
+                  [ngStyle]="{'background-color': selectedMO?.moId === mo.moId ? 'green' : 'white'}">
+          </button>
+        </td>
+      </tr>
+
         </tbody>
       </table>
     </div>

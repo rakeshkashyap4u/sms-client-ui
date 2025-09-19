@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AddLangaugeService } from '../services/add-langauge-service';
 
-interface Languages {
+export interface Languages {
   language: string;
   dataCoding: string;
   serviceType: string;
@@ -20,19 +22,24 @@ interface Languages {
 export class Language implements OnInit {
 
 
+  languageList$: Observable<Languages[]> | undefined;
 
 
-  languageList: Languages[] = [];
+  //languageList: Languages[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private languageService: AddLangaugeService, private router: Router) {
+    // directly assign observable
+    this.languageList$ = this.languageService.getLanguages();
+  }
+
 
   ngOnInit(): void {
     // TODO: Replace with API call
-    this.languageList = [
-      { language: '_E', dataCoding: '7-bit', serviceType: 'SMS', encoding: 'UTF-8', script: 'Latin' },
-      { language: '_F', dataCoding: '8-bit', serviceType: 'MMS', encoding: 'ISO-8859-1', script: 'Latin' },
-      { language: '_A', dataCoding: 'Unicode', serviceType: 'SMS', encoding: 'UTF-16', script: 'Arabic' }
-    ];
+    // this.languageList = [
+    //   { language: '_E', dataCoding: '7-bit', serviceType: 'SMS', encoding: 'UTF-8', script: 'Latin' },
+    //   { language: '_F', dataCoding: '8-bit', serviceType: 'MMS', encoding: 'ISO-8859-1', script: 'Latin' },
+    //   { language: '_A', dataCoding: 'Unicode', serviceType: 'SMS', encoding: 'UTF-16', script: 'Arabic' }
+    // ];
   }
 
   getLanguageName(code: string): string {

@@ -10,7 +10,7 @@ import { ShowActivePromotions } from './show-active-promotions/show-active-promo
 import { StartPromotion } from './start-promotion/start-promotion';
 import { Encoding } from './encoding/encoding';
 import { Config } from './config/config';
-import { AddLanguage } from './add-language/add-language';
+import { AddLanguageComponent } from './add-language/add-language';
 import { Language } from './language/language';
 import { AddSMSConfig } from './add-smsconfig/add-smsconfig';
 
@@ -27,7 +27,7 @@ export const routes: Routes = [
   { path: 'languages', component: Language },
   { path: 'config', component: Config },
   { path: 'addsmsc', component: AddSMSConfig },
-  { path: 'newLanguage', component: AddLanguage },
+  { path: 'newLanguage', component: AddLanguageComponent },
 
 
 

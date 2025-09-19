@@ -8,6 +8,8 @@
   </div>
 </div>
 
+
+
 <!-- MAIN CONTENT -->
 <div id="mainContent">
   <div id="container">
@@ -21,18 +23,16 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody *ngIf="(circles$ | async) as circles; else noConnections">
         <tr *ngFor="let circle of circles">
           <td>{{ circle.name }}</td>
           <td>{{ circle.detail }}</td>
           <td>
-            <span
-              class="status"
-              [ngClass]="{
-                success: circle.status === 'Success',
-                error: circle.status !== 'Success'
-              }"
-            >
+            <span class="status" [ngClass]="{
+              success: circle.status === 'Success',
+              error: circle.status !== 'Success'
+            }">
               {{ circle.status }}
             </span>
           </td>
@@ -41,15 +41,23 @@
               <span class="no-action">Connected</span>
             </ng-container>
             <ng-template #connectBtn>
-              <a
-                class="action-btn"
-                [href]="'/SMSClient/connect?circle=' + circle.name"
-                >Connect</a
-              >
+              <a class="action-btn" [href]="'/SMSClient/connect?circle=' + circle.name">Connect</a>
             </ng-template>
           </td>
         </tr>
       </tbody>
+
+      <ng-template #noConnections>
+        <tr>
+          <td colspan="4">No connections available</td>
+        </tr>
+      </ng-template>
+
+
+
+
+
+
     </table>
   </div>
 </div>

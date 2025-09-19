@@ -1,8 +1,5 @@
 <div class="form-style-10">
-  <h1>
-    Add New Language
-    <span>Configure language mapping here!</span>
-  </h1>
+  <h1>Add New Language <span>Configure language mapping here!</span></h1>
 
   <form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
     <div class="section"><span>1</span>Language Info</div>
@@ -17,7 +14,7 @@
 
       <label>
         Data Coding
-        <input type="text" formControlName="dataCoding" placeholder="Ex: 8" />
+        <input type="number" formControlName="dataCoding" placeholder="Ex: 8" />
       </label>
       <div class="error" *ngIf="languageForm.get('dataCoding')?.hasError('pattern')">
         Must be a single digit (0–9)
@@ -41,8 +38,9 @@
       <label>
         Encoding
         <div class="radio-row">
-          <input type="radio" value="true" formControlName="encoding" /> True
-          <input type="radio" value="false" formControlName="encoding" /> False
+          <!-- Use boolean values -->
+          <input type="radio" formControlName="encoding" [value]="true" name="encoding" /> True
+          <input type="radio" formControlName="encoding" [value]="false" name="encoding" /> False
         </div>
       </label>
     </div>
@@ -53,9 +51,9 @@
         Script
         <select formControlName="script">
           <option value="">-- SELECT SCRIPT --</option>
-          <option value="0">UNKNOWN-0</option>
-          <option value="1">ARABIC-1</option>
-          <option value="2">LATIN-2</option>
+          <option [value]="0">UNKNOWN-0</option>
+          <option [value]="1">ARABIC-1</option>
+          <option [value]="2">LATIN-2</option>
         </select>
       </label>
       <div class="error" *ngIf="languageForm.get('script')?.touched && languageForm.get('script')?.hasError('required')">
@@ -64,7 +62,7 @@
     </div>
 
     <div class="button-section">
-      <button type="submit">Save Language</button>
+      <button type="submit" [disabled]="languageForm.invalid">Save Language</button>
     </div>
   </form>
 </div>

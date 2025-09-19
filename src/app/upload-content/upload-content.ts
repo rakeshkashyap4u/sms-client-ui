@@ -18,6 +18,10 @@ interface Alert {
 export class UploadContent implements OnInit {
   alerts: Alert[] = [];
 
+  selectedFile: File | undefined;
+
+  selectedFiles: File[] = [];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -25,7 +29,7 @@ export class UploadContent implements OnInit {
   }
 
   getAlertService(): void {
-    this.http.get<any>('../getAlertsWithContents').subscribe({
+    this.http.get<any>('http://localhost:8080/getAlertsWithContents').subscribe({
       next: (resp) => {
         this.alerts = resp.alerts || [];
       },
@@ -37,5 +41,25 @@ export class UploadContent implements OnInit {
 
   deleteSelectedServices(form: HTMLFormElement): void {
     form.submit(); // keep old backend handling
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadFile(): void {
+    if (!this.selectedFile) return;
+
+    const formData = new FormData();
+    formData.append('alertcontent[]', this.selectedFile);
+
+    this.http.post('http://localhost:8080/uploadAlertContent', formData, { responseType: 'text' })
+      .subscribe({
+        next: (status) => {
+          console.log('Server response:', status);
+          alert(status); // optional user feedback
+        },
+        error: (err) => console.error('Upload failed', err)
+      });
   }
 }

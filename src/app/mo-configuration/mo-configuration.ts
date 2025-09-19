@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 
 
 interface MOAction {
@@ -39,20 +40,24 @@ export class MoConfiguration  implements OnInit {
     moid: '',
     type: 'GET'
   };
+  mos$: Observable<any[]> | undefined;
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
+
+
+  ngOnInit() {
     this.getMOs();
+
   }
 
-  getMOs(): void {
-    this.http.get<any>('../getMOsAsJson').subscribe({
-      next: (resp) => {
-        this.mos = resp.mos || [];
-      },
-      error: (err) => console.error('Error fetching MOs:', err)
-    });
+  getMOs() {
+    console.log("getMOs");
+
+    // Transform API response into an array
+    this.mos$ = this.http.get<{ mos: any | any[] }>('http://localhost:8080/getMOsAsJson').pipe(
+      map((resp: { mos: any; }) => Array.isArray(resp.mos) ? resp.mos : [resp.mos])
+    );
   }
 
   selectMO(mo: MO): void {
@@ -60,14 +65,27 @@ export class MoConfiguration  implements OnInit {
   }
 
   addNewMO(): void {
-    this.http.post('/SMSClient/addMO', this.newMO).subscribe({
+    // Build query parameters from your form data
+    const params = new URLSearchParams({
+      action: this.newMO.action,
+      shcode: this.newMO.shcode,
+      keyword: this.newMO.keyword,
+      type: this.newMO.type
+    }).toString();
+
+    // Make POST request with parameters in URL
+    this.http.post(`http://localhost:8080/addMO?${params}`, {}).subscribe({
       next: () => {
-        this.getMOs();
+        this.getMOs(); // refresh MO list
+        // Reset form
         this.newMO = { action: '', shcode: '', keyword: '', type: 'GET' };
+
       },
       error: (err) => console.error('Error adding MO:', err)
     });
+    window.location.reload();
   }
+
 
   addNewMOAction(): void {
     if (!this.selectedMO) return;

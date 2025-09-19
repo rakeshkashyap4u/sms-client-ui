@@ -42,21 +42,28 @@
 
     <div id="container">
       <span class="small">Upload the above derived file here:</span>
-      <form id="uploadForm" method="POST" action="/SMSClient/uploadAlertContent/" enctype="multipart/form-data">
+      <form (ngSubmit)="uploadFile()" #uploadForm="ngForm">
         <table class="inner-table">
           <tr>
             <td class="center">
-              <input id="contentupload" name="alertcontent[]" type="file" required/>
+              <input
+                id="contentupload"
+                type="file"
+                (change)="onFileSelected($event)"
+                required
+                multiple
+              />
             </td>
           </tr>
           <tr>
             <td class="center">
-              <input type="submit" value="Upload" name="UploadContent" class="submitButton"/>
+              <button type="submit" class="submitButton">Upload</button>
             </td>
           </tr>
         </table>
       </form>
     </div>
+
   </div>
 </body>
 </html>

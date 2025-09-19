@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { SmsConfigService } from '../services/sms-config-service';
+import { map, Observable } from 'rxjs';
 
 interface Circle {
   name: string;
@@ -11,27 +13,29 @@ interface Circle {
 @Component({
   selector: 'app-connection-status',
   standalone: true, // ✅ mark as standalone
-  imports: [CommonModule, HttpClientModule], // ✅ only modules here
+  imports: [CommonModule], // ✅ only modules here
   templateUrl: './connection-status.html',
   styleUrls: ['./connection-status.css'] // ✅ plural
 })
 export class ConnectionStatus {
-  circles: Circle[] = [];
 
-  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.getConnections();
+  circles$: Observable<Circle[]>; // ✅ observable for async pipe
+
+  constructor(private smsConfigService: SmsConfigService) {
+    // transform API response into an array of Circle objects
+    this.circles$ = this.smsConfigService.getConnections().pipe(
+      map((data: { circles: any; }) => Array.isArray(data.circles) ? data.circles : [data.circles])
+    );
   }
 
-  getConnections(): void {
-    this.http.get<any>('../getConnectionsAsJson').subscribe({
-      next: (resp) => {
-        this.circles = resp.circles || [];
-      },
-      error: (err) => {
-        console.error('Error fetching connections:', err);
-      }
-    });
-  }
+  loading = true;
+circles: Circle[] = [];
+
+ngOnInit() {
+
+
+
+
+}
 }
